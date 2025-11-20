@@ -214,22 +214,16 @@ Tensor GPT2Model::lm_head(const Tensor& x) {
 }
 
 Tensor GPT2Model::forward(const std::vector<int>& input_ids) {
-    std::cout << "Forward pass with " << input_ids.size() << " tokens" << std::endl;
-    
-    // Embeddings
+    // Forward pass (silent)
     Tensor x = embedding(input_ids);
-    std::cout << "  Embeddings: [" << x.shape()[0] << ", " << x.shape()[1] << "]" << std::endl;
-    
+
     // Transformer blocks
     for (int i = 0; i < m_config.n_layer; i++) {
-        std::cout << "  Layer " << i << "..." << std::endl;
         x = transformer_block(x, i);
     }
-    
+
     // Language model head
     Tensor logits = lm_head(x);
-    std::cout << "  Output logits: [" << logits.shape()[0] << ", " << logits.shape()[1] << "]" << std::endl;
-    
     return logits;
 }
 

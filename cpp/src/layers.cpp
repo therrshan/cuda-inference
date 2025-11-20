@@ -89,8 +89,7 @@ Tensor Linear::forward(const Tensor& x) const {
     // x: [seq_len, in_features]
     // weight: Check actual shape and do the right operation
     
-    std::cout << "    Linear: x=[" << x.shape()[0] << ", " << x.shape()[1] << "], ";
-    std::cout << "W=[" << weight.shape()[0] << ", " << weight.shape()[1] << "]" << std::endl;
+    // Debug prints removed to reduce noisy output during forward passes
     
     Tensor result;
     
